@@ -1,4 +1,4 @@
-import { Controller, Get, Req } from '@nestjs/common';
+import { Controller, Get, Post,  Req} from '@nestjs/common';
 import { Request } from 'express';
 
 @Controller('cats')
@@ -14,5 +14,11 @@ export class CatsController {
 		return {
 			name: 'Tom',
 		}
+	}
+
+	@Post('add')
+	// 新增
+	create(): string {
+		return 'Add info success!';
 	}
 }
