@@ -1,4 +1,4 @@
-import { Controller, Get, Post,  Req, HttpCode} from '@nestjs/common';
+import { Controller, Get, Post,  Req, HttpCode, Header} from '@nestjs/common';
 import { Request, request } from 'express';
 
 @Controller('cats')
@@ -32,5 +32,11 @@ export class CatsController {
 	ztm(@Req() request: Request): string{
 		console.log(request);
 		return '状态码';
+	}
+
+	@Post('mod-header')
+	@Header('Cache-Control', 'none')
+	modHeader(): string{
+		return 'Modify Header!';
 	}
 }
