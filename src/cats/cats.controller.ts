@@ -1,5 +1,5 @@
-import { Controller, Get, Post,  Req} from '@nestjs/common';
-import { Request } from 'express';
+import { Controller, Get, Post,  Req, HttpCode} from '@nestjs/common';
+import { Request, request } from 'express';
 
 @Controller('cats')
 export class CatsController {
@@ -25,5 +25,12 @@ export class CatsController {
 	@Get('abc*def')
 	tp(): string{
 		return '通配符';
+	}
+
+	@Post('ztm')
+	@HttpCode(201)
+	ztm(@Req() request: Request): string{
+		console.log(request);
+		return '状态码';
 	}
 }
