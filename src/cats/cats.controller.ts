@@ -21,4 +21,9 @@ export class CatsController {
 	create(): string {
 		return 'Add info success!';
 	}
+
+	@Get('abc*def')
+	tp(): string{
+		return '通配符';
+	}
 }
