@@ -10,6 +10,7 @@ import { Request, Response } from 'express';
 import { Observable, of } from 'rxjs';
 import { CreateCatDto } from '../../dto/create-cat.dto';
 import { CatsService } from 'src/service/cats/cats.service';
+import { Cat } from 'src/interface/cats.interface';
 
 @Controller('cats')
 export class CatsController {
@@ -27,8 +28,8 @@ export class CatsController {
 	}
 
 	@Get()
-	findAll(@Req() request: Request): void {
-		this.catsService.findAll();
+	async findAll(@Req() request: Request): Promise<Cat[]> {
+		return this.catsService.findAll();
 	}
 
 	@Get('find-all-with-res')
