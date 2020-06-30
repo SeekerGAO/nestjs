@@ -1,10 +1,12 @@
-import { 
-	Controller, 
-	Get, Post,  
-	Req, HttpCode, 
-	Header, Redirect, 
-	Query, Param} from '@nestjs/common';
-import { Request, request } from 'express';
+import {
+	Controller,
+	Get, Post,
+	Req, HttpCode,
+	Header, Redirect,
+	Query, Param,
+	HostParam
+} from '@nestjs/common';
+import { Request } from 'express';
 
 @Controller('cats')
 export class CatsController {
@@ -57,5 +59,13 @@ export class CatsController {
 	@Get(':id')
 	findId(@Param('id') id: string): string{
 		return `Find id is ${id}`;
+	}
+}
+
+@Controller({ path: 'account', host: ':localhost' })
+export class AccountController {
+	@Get()
+	getInfo(@HostParam('localhost') account: string): string {
+		return account;
 	}
 }
