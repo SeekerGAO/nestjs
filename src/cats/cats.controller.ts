@@ -1,4 +1,4 @@
-import { Controller, Get, Post,  Req, HttpCode, Header} from '@nestjs/common';
+import { Controller, Get, Post,  Req, HttpCode, Header, Redirect, Query} from '@nestjs/common';
 import { Request, request } from 'express';
 
 @Controller('cats')
@@ -38,5 +38,14 @@ export class CatsController {
 	@Header('Cache-Control', 'none')
 	modHeader(): string{
 		return 'Modify Header!';
+	}
+
+	@Get('docs')
+  @Redirect('https://docs.nestjs.com', 301)
+	getDocs(@Query('version') version: string): Record<string, string> {
+		console.log(version)
+		if (version && version === '5') {
+			return { url: 'https://docs.nestjs.com/v5/', statuCode: '302' };
+		}
 	}
 }
