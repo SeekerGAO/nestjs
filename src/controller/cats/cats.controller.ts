@@ -9,12 +9,15 @@ import {
 import { Request, Response } from 'express';
 import { Observable, of } from 'rxjs';
 import { CreateCatDto } from '../../dto/create-cat.dto';
+import { CatsService } from 'src/service/cats/cats.service';
 
 @Controller('cats')
 export class CatsController {
+	constructor(private catsService: CatsService) {}
+
 	@Post('create-cat')
-	async createCat(@Body() createCatDto: CreateCatDto): Promise<string> {
-		return 'This action adds a new cat';
+	async createCat(@Body() createCatDto: CreateCatDto): Promise<any> {
+		this.catsService.create(createCatDto);
 	}
 
 	@Post('create-cat-with-res')
@@ -23,9 +26,8 @@ export class CatsController {
 	}
 
 	@Get()
-	findAll(@Req() request: Request): string {
-		console.log(request);
-		return 'find all cats';
+	findAll(@Req() request: Request): void {
+		this.catsService.findAll();
 	}
 
 	@Get('find-all-with-res')
