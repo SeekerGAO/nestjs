@@ -8,9 +8,9 @@ import {
 } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { Observable, of } from 'rxjs';
-import { CreateCatDto } from '../../dto/create-cat.dto';
-import { CatsService } from 'src/service/cats/cats.service';
-import { Cat } from 'src/interface/cats.interface';
+import { CreateCatDto } from '../dto/create-cat.dto';
+import { CatsService } from 'src/cats/service/cats.service';
+import { Cat } from 'src/cats/interface/cats.interface';
 
 @Controller('cats')
 export class CatsController {
