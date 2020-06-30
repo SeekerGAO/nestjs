@@ -7,6 +7,7 @@ import {
 	HostParam
 } from '@nestjs/common';
 import { Request } from 'express';
+import { Observable, of } from 'rxjs';
 
 @Controller('cats')
 export class CatsController {
@@ -67,5 +68,15 @@ export class AccountController {
 	@Get()
 	getInfo(@HostParam('localhost') account: string): string {
 		return account;
+	}
+
+	@Get('async')
+	async findAll(): Promise<any[]>{
+		return [];
+	}
+
+	@Get('observable')
+	find(): Observable<any[]>{
+		return of([]);
 	}
 }
