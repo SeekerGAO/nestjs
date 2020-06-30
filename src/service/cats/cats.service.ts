@@ -16,7 +16,7 @@ export class CatsService {
 
 @Injectable()
 export class HttpService<T> {
-  constructor(
-    @Optional() @Inject('HTTP_OPTIONS') private readonly httpClient: T
-  ) {}
+  @Optional() 
+  @Inject('HTTP_OPTIONS') 
+  private readonly httpClient: T;
 }
