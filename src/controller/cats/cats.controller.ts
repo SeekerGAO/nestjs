@@ -13,7 +13,8 @@ import { CatsService } from 'src/service/cats/cats.service';
 
 @Controller('cats')
 export class CatsController {
-	constructor(private catsService: CatsService) {}
+	// 单例
+	constructor(private readonly catsService: CatsService) {}
 
 	@Post('create-cat')
 	async createCat(@Body() createCatDto: CreateCatDto): Promise<any> {
