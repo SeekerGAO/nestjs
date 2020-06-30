@@ -4,13 +4,19 @@ import {
 	Req, HttpCode,
 	Header, Redirect,
 	Query, Param,
-	HostParam
+	HostParam, Body
 } from '@nestjs/common';
 import { Request } from 'express';
 import { Observable, of } from 'rxjs';
+import { CreateCatDto } from '../../dto/create-cat.dto';
 
 @Controller('cats')
 export class CatsController {
+	@Post('create-cat')
+	async createCat(@Body() createCatDto: CreateCatDto): Promise<string> {
+		return 'This action adds a new cat';
+	}
+
 	@Get()
 	findAll(@Req() request: Request): string {
 		console.log(request);
