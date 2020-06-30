@@ -4,9 +4,9 @@ import {
 	Req, HttpCode,
 	Header, Redirect,
 	Query, Param,
-	HostParam, Body
+	HostParam, Body, Res, HttpStatus
 } from '@nestjs/common';
-import { Request } from 'express';
+import { Request, Response } from 'express';
 import { Observable, of } from 'rxjs';
 import { CreateCatDto } from '../../dto/create-cat.dto';
 
@@ -17,10 +17,20 @@ export class CatsController {
 		return 'This action adds a new cat';
 	}
 
+	@Post('create-cat-with-res')
+	createCatWithRes(@Res() res: Response): void {
+		res.status(HttpStatus.CREATED).send('create cat with res');
+	}
+
 	@Get()
 	findAll(@Req() request: Request): string {
 		console.log(request);
 		return 'find all cats';
+	}
+
+	@Get('find-all-with-res')
+	findAllWithRes(@Res() res: Response): void {
+		res.status(HttpStatus.OK).json([]);
 	}
 
 	@Get('test')
